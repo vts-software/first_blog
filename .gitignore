@@ -23,7 +23,6 @@ instance/
 *.sqlite3
 
 # Alembic migrations
-alembic/versions
 migrations/
 
 

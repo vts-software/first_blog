@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Posts</h2>
+  <a class="btn" href="{{ url_for('posts.add_post') }}">Add Post</a>
+
+  {% for post in posts %}
+    <div class="card">
+      <h3>
+        <a href="{{ url_for('posts.view_post', post_id=post.id) }}">
+          {{ post.title }}
+        </a>
+      </h3>
+      <p>{{ post.content }}</p>
+      <p><strong>Author:</strong> {{ post.author.username }}</p>
+
+      <p>
+        {% if post.rating %}
+          Rating: {{ post.rating }}/10
+        {% else %}
+          Not rated yet
+        {% endif %}
+      </p>
+
+      {% if current_user.is_authenticated and post.author_id == current_user.id %}
+        <a href="{{ url_for('posts.edit_post', post_id=post.id) }}">Edit</a>
+      {% endif %}
+    </div>
+  {% else %}
+    <p>No posts yet.</p>
+  {% endfor %}
+{% endblock %}

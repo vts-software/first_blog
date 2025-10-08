@@ -1,0 +1,43 @@
+.env
+.venv/
+.idea
+.vscode/
+
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+*.log
+
+
+venv/
+.venv/
+env/
+ENV/
+
+# Flask / instance
+instance/
+*.db
+*.sqlite3
+
+# Alembic migrations
+alembic/versions
+migrations/
+
+
+# IDE / Editor
+.idea/
+*.swp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Cache / temp
+*.cache
+*.tmp
+
+External Libraries
+Scratches and Consoles

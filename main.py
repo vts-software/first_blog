@@ -26,9 +26,6 @@ app.register_blueprint(user.bp)
 def home():
     return render_template("base.html")
 
-if __name__ == "__main__":
-    app.run(debug=True)
-
 @app.context_processor
 def inject_user():
     return dict(current_user=current_user)
@@ -36,3 +33,7 @@ def inject_user():
 @app.errorhandler(400)
 def bad_request(error):
     return render_template("400.html"), 400
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

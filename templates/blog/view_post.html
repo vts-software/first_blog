@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>{{ post.title }}</h2>
+  <p>{{ post.content }}</p>
+  <p><strong>Author:</strong> {{ post.author.username }}</p>
+
+  <p>
+    Current rating:
+    {% if post.average_rating %}
+      {{ "%.1f"|format(post.average_rating) }}/10
+      ({{ post.ratings|length }} votes)
+    {% else %}
+      Not rated yet
+    {% endif %}
+  </p>
+
+  {# Автор не может голосовать за свой пост #}
+  {% if current_user.is_authenticated and post.author_id == current_user.id %}
+    <em>You cannot rate your own post</em>
+  {% else %}
+    <form method="post" action="{{ url_for('posts.rate_post', post_id=post.id) }}">
+      <label for="rating">Rate this post (1–10):</label>
+      <input type="number" name="rating" min="1" max="10" required>
+      <button type="submit">Submit</button>
+    </form>
+  {% endif %}
+{% endblock %}
